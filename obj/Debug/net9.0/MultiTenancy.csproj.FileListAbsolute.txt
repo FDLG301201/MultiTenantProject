@@ -1,0 +1,8 @@
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.csproj.AssemblyReference.cache
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.AssemblyInfoInputs.cache
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.AssemblyInfo.cs
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.csproj.CoreCompileInputs.cache
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Helen\source\repos\MultiTenancy\obj\Debug\net9.0\MultiTenancy.MvcApplicationPartsAssemblyInfo.cache
