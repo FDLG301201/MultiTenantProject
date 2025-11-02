@@ -16,15 +16,16 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore & Build (capture output)
-        shell: bash
-        run: |
-          mkdir -p build-logs
-          echo "== dotnet --info ==" > build-logs/dotnet-info.txt
-          dotnet --info >> build-logs/dotnet-info.txt 2>&1 || true
-          echo "== dotnet restore ==" > build-logs/restore.txt
-          dotnet restore >> build-logs/restore.txt 2>&1 || true
-          echo "== dotnet build ==" > build-logs/build.txt
-          dotnet build --verbosity:minimal >> build-logs/build.txt 2>&1 || true
+  shell: bash
+  run: |
+    mkdir -p build-logs
+    echo "== dotnet --info ==" > build-logs/dotnet-info.txt
+    dotnet --info >> build-logs/dotnet-info.txt 2>&1 || true
+    echo "== dotnet restore (csproj) ==" > build-logs/restore.txt
+    dotnet restore ./MultiTenancy.csproj >> build-logs/restore.txt 2>&1 || true
+    echo "== dotnet build (csproj) ==" > build-logs/build.txt
+    dotnet build ./MultiTenancy.csproj -c Release --nologo --verbosity:minimal >> build-logs/build.txt 2>&1 || true
+
 
       - name: Show short build summary
         shell: bash
