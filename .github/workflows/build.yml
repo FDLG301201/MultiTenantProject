@@ -19,21 +19,26 @@ jobs:
         shell: bash
         run: |
           mkdir -p build-logs
+          echo "== repo tree ==" > build-logs/tree.txt
+          ls -la >> build-logs/tree.txt
           echo "== dotnet --info ==" > build-logs/dotnet-info.txt
           dotnet --info >> build-logs/dotnet-info.txt 2>&1 || true
-          echo "== dotnet restore ==" > build-logs/restore.txt
-          dotnet restore >> build-logs/restore.txt 2>&1 || true
-          echo "== dotnet build ==" > build-logs/build.txt
-          dotnet build --verbosity:minimal >> build-logs/build.txt 2>&1 || true
+
+          echo "== dotnet restore (csproj) ==" > build-logs/restore.txt
+          dotnet restore ./MultiTenancy.csproj >> build-logs/restore.txt 2>&1 || true
+
+          echo "== dotnet build (csproj) ==" > build-logs/build.txt
+          dotnet build ./MultiTenancy.csproj -c Release --nologo --verbosity:minimal >> build-logs/build.txt 2>&1 || true
 
       - name: Show short build summary
         shell: bash
         run: |
-          echo "Last 200 lines of build log:"
-          tail -n 200 build-logs/build.txt || true
+          echo "Last 120 lines of build log:"
+          tail -n 120 build-logs/build.txt || true
 
       - name: Upload logs as artifact
         uses: actions/upload-artifact@v4
         with:
           name: dotnet-build-logs
           path: build-logs/
+
