@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dotnet-build-logs
-          path: build-logs/ 
+          path: build-logs/
