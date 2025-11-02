@@ -1,0 +1,32 @@
+name: .NET Build CSProj Only
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_csproj:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore & Build MultiTenancy.csproj
+        shell: bash
+        run: |
+          mkdir -p build-logs
+          echo "SENTINEL: BUILDING ./MultiTenancy.csproj ONLY" | tee build-logs/sentinel.txt
+          echo "== dotnet restore (csproj) ==" > build-logs/restore.txt
+          dotnet restore ./MultiTenancy.csproj >> build-logs/restore.txt 2>&1 || true
+          echo "== dotnet build (csproj) ==" > build-logs/build.txt
+          dotnet build ./MultiTenancy.csproj -c Release --nologo --verbosity:minimal >> build-logs/build.txt 2>&1 || true
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-build-logs
+          path: build-logs/
